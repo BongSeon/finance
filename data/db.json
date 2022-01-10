@@ -5,21 +5,14 @@
       "user_name": "김도균",
       "user_phone": "01012349999",
       "type": "대출문의",
-      "datetime": "202200109125000"
+      "datetime": "1641824541252"
     },
     {
-      "user_name": "김도균",
+      "user_name": "노홍철",
       "user_phone": "01012349999",
       "type": "대출문의",
-      "datetime": "202200109126000",
-      "id": 3
-    },
-    {
-      "user_name": "김도균",
-      "user_phone": "01012349999",
-      "type": "대출문의",
-      "datetime": "202200109126000",
-      "id": 4
+      "datetime": 1641824542252,
+      "id": 5
     }
   ],
   "faqs": [
