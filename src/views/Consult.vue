@@ -1,46 +1,132 @@
 <template>
-	<!-- begin #page-title -->
-	<div id="page-title" class="page-title has-bg">
-		<div class="bg-cover" data-paroller="true" data-paroller-factor="0.5" data-paroller-factor-xs="0.2" style="background: url(../assets/img/cover/cover-8.jpg) center 0px / cover no-repeat"></div>
-		<div class="container">
-			<h1>상담문의</h1>
-			<p>Blog Concept Front End Page</p>
-		</div>
-	</div>
-	<!-- end #page-title -->
-  <div>
-    <h1>Consult</h1>
-    <button @click="handleSubmit">상담신청</button>
+  <div class="home font-basic">
+    <ContentTop />
+    <div class="bg-basic">
+      <div class="container">
+        <div class="section-1">
+          <div class="img-and-logo">
+            <img class="img-avatar" src="../assets/img/20.png" alt="" /><img
+              class="img-logo"
+              src="../assets/img/5.png"
+              alt="logo"
+            />
+          </div>
+
+          <p class="text-1">
+            온라인 365일! 24시간!
+            <span class="text-2">빠른상담신청</span>
+          </p>
+        </div>
+        <div class="section-2">
+          <ApplyForm />
+          <!-- <div class="phone">
+          <img class="img-headphone" src="../assets/img/64.png" alt="" />
+          <p class="text-3">010-9999-9999</p>
+        </div> -->
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
-import postConsult from '../composables/postConsult'
-import sendTelegram from '../composables/sendTelegram'
+import PageTitle from "../components/PageTitle.vue";
+import ApplyForm from "../components/ApplyForm.vue";
+import ContentTop from "@/components/ContentTop.vue";
 
 export default {
-  components: { },
+  components: { ContentTop, PageTitle, ApplyForm },
+};
+</script>
 
-  setup() {
-    const { error1, post } = postConsult()
-    const { error2, send } = sendTelegram()
-
-    const handleSubmit = async () => {
-      console.log('상담신청이 접수되었습니다.')
-      let postData = 
-      {
-        user_name: "노홍철",
-        user_phone: "01012349999",
-        type: "대출문의",
-        datetime: Date.now()
-      }
-      post(postData)
-
-      //send(postData.user_name + '님의 상담신청이 접수되었습니다.')
-    }
-    
-    return { handleSubmit }
+<style scoped>
+.section-1 {
+  height: 316px;
+  padding-top: 36px;
+}
+.img-and-logo {
+  position: relative;
+  margin: 0px auto;
+  margin-bottom: 0;
+  width: 221px;
+  top: 0px;
+  left: 0px;
+}
+.img-avatar {
+  width: 221px;
+  /* width: 100%; */
+}
+.img-logo {
+  position: absolute;
+  width: 120px;
+  top: 100px;
+  left: -43px;
+}
+.text-1 {
+  margin-top: 10px;
+  /* position: relative; */
+  font-family: paybooc;
+  font-size: 1.35rem;
+  font-weight: bold;
+  letter-spacing: -1.3px;
+  /* text-align: ; */
+  color: #45b4ac;
+  /* bottom: 0px; */
+  /* left: 55px;  */
+  /* margin-left: 8px; */
+}
+.text-2 {
+  position: relative;
+  color: #176a64;
+}
+.phone {
+  /* margin-top: 58px; */
+  margin: 58px auto;
+  background-color: blanchedalmond;
+  width: 520px;
+  height: 87px;
+}
+.text-3 {
+  /* position: relative; */
+  display: inline;
+  vertical-align: middle;
+  font-family: S-CoreDream-5Medium;
+  font-size: 59px;
+  font-weight: 500;
+  line-height: 0.69;
+  letter-spacing: -2.95px;
+  color: #00655a;
+  margin-left: 8px;
+}
+@media (max-width: 1199.98px) {
+  .bg-basic {
+    height: 314px;
   }
 }
-</script>
+@media (max-width: 991.98px) {
+  .bg-basic {
+    height: 314px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .bg-basic {
+    /* height: 261px; */
+  }
+  .img-and-logo {
+    left: 17px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .bg-basic {
+    height: 314px;
+  }
+  .img-avatar {
+    width: 192px;
+  }
+  .text-1 {
+    font-size: 1.25rem;
+  }
+}
+</style>

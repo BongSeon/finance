@@ -1,29 +1,41 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Consult from '../views/Consult.vue'
-import Faq from '../views/Faq.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "../views/Home.vue";
+import Gide from "../views/Gide.vue";
+import Product from "../views/Product.vue";
+import Consult from "../views/Consult.vue";
+import Tous from "../views/Tous.vue";
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/consult',
-    name: 'Consult',
-    component: Consult
+    path: "/gide",
+    name: "Gide",
+    component: Gide,
   },
   {
-    path: '/faq',
-    name: 'Faq',
-    component: Faq
-  }
-]
+    path: "/product",
+    name: "Product",
+    component: Product,
+  },
+  {
+    path: "/consult",
+    name: "Consult",
+    component: Consult,
+  },
+  {
+    path: "/tous",
+    name: "Tous",
+    component: Tous,
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

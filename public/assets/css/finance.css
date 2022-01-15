@@ -1,0 +1,100 @@
+body {
+  background-color: #99d1ce;
+}
+.bg-basic {
+  height: 316px;
+  margin: 0;
+  background-color: #e7f1f1;
+}
+.font-basic {
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.centered {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+@font-face {
+  font-family: "Paybooc";
+  font-weight: 500;
+  font-style: normal;
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/bccard/PayboocMedium.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/bccard/PayboocMedium.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/bccard/PayboocMedium.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/bccard/PayboocMedium.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/bccard/PayboocMedium.ttf")
+      format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "NEXONLv2GothicOTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NEXONLv2Gothic";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NEXONLv2GothicLight";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "S-CoreDream-5Medium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ONEMobile";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/* @media (min-width: 1200px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1300px;
+  }
+} */
+@media (max-width: 1199.98px) {
+  .bg-basic {
+    height: 324px;
+  }
+}
+@media (max-width: 991.98px) {
+  .bg-basic {
+    height: 196px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .bg-basic {
+    /* height: 261px; */
+  }
+}
+
+@media (max-width: 575.98px) {
+  .bg-basic {
+    height: 176px;
+  }
+}
