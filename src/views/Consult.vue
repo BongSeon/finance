@@ -54,7 +54,6 @@ export default {
 }
 .img-avatar {
   width: 221px;
-  /* width: 100%; */
 }
 .img-logo {
   position: absolute;
@@ -64,30 +63,23 @@ export default {
 }
 .text-1 {
   margin-top: 10px;
-  /* position: relative; */
   font-family: paybooc;
   font-size: 1.35rem;
   font-weight: bold;
   letter-spacing: -1.3px;
-  /* text-align: ; */
   color: #45b4ac;
-  /* bottom: 0px; */
-  /* left: 55px;  */
-  /* margin-left: 8px; */
 }
 .text-2 {
   position: relative;
   color: #176a64;
 }
 .phone {
-  /* margin-top: 58px; */
   margin: 58px auto;
   background-color: blanchedalmond;
   width: 520px;
   height: 87px;
 }
 .text-3 {
-  /* position: relative; */
   display: inline;
   vertical-align: middle;
   font-family: S-CoreDream-5Medium;
@@ -108,19 +100,15 @@ export default {
     height: 314px;
   }
 }
-
 @media (max-width: 767.98px) {
-  .bg-basic {
-    /* height: 261px; */
-  }
   .img-and-logo {
     left: 17px;
   }
 }
-
 @media (max-width: 575.98px) {
-  .bg-basic {
-    height: 314px;
+  .bg-basic,
+  .section-1 {
+    height: 295px;
   }
   .img-avatar {
     width: 192px;

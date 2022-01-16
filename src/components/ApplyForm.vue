@@ -73,7 +73,7 @@
         </div>
         <div class="row mb-3">
           <div class="col-12">
-            <button class="btn btn-agree">
+            <button class="btn btn-agree" @click="handleAgree">
               <i class="fas fa-check"></i> <span class="text-1">|</span>
               동의서 확인하기
             </button>
@@ -88,53 +88,89 @@
     </div>
     <div>
       <!-- <button class="btn btn-submit w-150px ms-5px" @click="handleSubmit"> -->
-      <button class="btn btn-submit ms-5px" @click="handleSubmit">
+      <button
+        class="btn btn-submit ms-5px"
+        :class="{ disabled: applied }"
+        @click="handleSubmit"
+      >
         빠른상담신청
       </button>
     </div>
   </div>
+
+  <Toast :showToast="showToast" />
+  <AgreementForm :showModal="showModal" @close="handleCloseModal" />
 </template>
 
 <script>
 import { ref } from "@vue/reactivity";
 import postConsult from "../composables/postConsult";
 import sendTelegram from "../composables/sendTelegram";
+import Toast from "./Toast.vue";
+import AgreementForm from "./AgreementForm.vue";
 
 export default {
+  components: { Toast, AgreementForm },
   setup() {
     const { error1, post } = postConsult();
-    const { error2, send } = sendTelegram();
+    const { sendError, send } = sendTelegram();
     const postData = ref({
-      user_name: "이름",
-      user_phone: "전화번호",
+      user_name: "",
+      user_phone: "",
       loan_type: "주택담보대출",
       datetime: null,
     });
+    const showToast = ref(false);
+    const showModal = ref(false);
+    const applied = ref(false);
+    const agreeChecked = ref(false);
 
     const handleSubmit = async () => {
-      console.log("상담신청이 접수되었습니다.");
       // postData.value.user_name = "김수달";
-      postData.value.user_phone = "01012349999";
-      postData.value.loan_type = "주택담보대출";
+      // postData.value.user_phone = "01012349999";
+      // postData.value.loan_type = "주택담보대출";
       postData.value.datetime = Date.now();
 
       console.log(postData.value);
       post(postData.value);
 
-      send(postData.value.user_name + "님의 상담신청이 접수되었습니다.");
+      await send(postData.value.user_name + "님의 상담신청이 접수되었습니다.");
+      console.log("상담신청이 접수되었습니다.");
+      showToast.value = true;
+      applied.value = true;
+
+      if (sendError.value != null) {
+        console.log("에러 발생: " + sendError.value);
+      } else {
+        console.log("정상처리 완료");
+      }
+    };
+    const handleAgree = () => {
+      showModal.value = true;
+      agreeChecked.value = true;
+    };
+    const handleCloseModal = () => {
+      showModal.value = false;
     };
 
-    return { handleSubmit, postData };
+    return {
+      handleSubmit,
+      postData,
+      showToast,
+      applied,
+      showModal,
+      handleAgree,
+      agreeChecked,
+      handleCloseModal,
+    };
   },
 };
 </script>
 
 <style scoped>
 .form {
-  /* margin-top: 58px; */
   padding: 24px 0px;
   margin: 0 auto;
-  /* background-color: blanchedalmond; */
   width: 100%;
   height: 559px;
   min-width: 340px;
@@ -190,7 +226,6 @@ td {
   color: #fff;
 }
 .table > :not(caption) > * > * {
-  /* padding: 0.3rem 0.3rem; */
   margin-bottom: 3px;
 }
 .table > :not(:first-child) {
@@ -219,11 +254,9 @@ td {
   height: 35px;
   padding: 0 0 1px 0;
   border-radius: 10px;
-  /* box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.16); */
   background-color: #63b459;
 }
 .btn-submit {
-  /* height: 34px; */
   font-size: 30px;
   width: 100%;
   margin-top: 20px;
@@ -256,9 +289,6 @@ td {
 }
 
 @media (max-width: 767.98px) {
-  .bg-basic {
-    /* height: 261px; */
-  }
   .img-and-logo {
     left: 17px;
   }

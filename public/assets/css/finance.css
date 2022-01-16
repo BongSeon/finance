@@ -12,11 +12,7 @@ body {
   line-height: normal;
   letter-spacing: normal;
 }
-.centered {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
+
 @font-face {
   font-family: "Paybooc";
   font-weight: 500;
@@ -88,9 +84,6 @@ body {
 }
 
 @media (max-width: 767.98px) {
-  .bg-basic {
-    /* height: 261px; */
-  }
 }
 
 @media (max-width: 575.98px) {

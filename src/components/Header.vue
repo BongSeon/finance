@@ -130,7 +130,7 @@ export default {
 }
 .header .nav.navbar-nav > li > a {
   color: #064d47;
-  font-size: 1.3rem;
+  font-size: 1.31rem;
   font-family: AppleSDGothicNeo;
 }
 .header .nav.navbar-nav > li > a:hover {

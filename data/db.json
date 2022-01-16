@@ -8,11 +8,11 @@
       "id": 5
     },
     {
+      "id": 1,
       "user_name": "김수달",
       "user_phone": "01012349999",
       "type": "대출문의",
-      "datetime": 1641889909826,
-      "id": 7
+      "datetime": 1641889909826
     },
     {
       "user_name": "여름",
@@ -20,6 +20,13 @@
       "loan_type": "주택담보대출",
       "datetime": 1642257639116,
       "id": 8
+    },
+    {
+      "user_name": "가을",
+      "user_phone": "01055556666",
+      "loan_type": "주택담보대출",
+      "datetime": 1642322143551,
+      "id": 9
     }
   ],
   "faqs": [

@@ -5,11 +5,7 @@
       <div class="container">
         <h3 class="text-1">
           낮은 금리로 빠르고 쉽고 간편하게~
-          <img
-            class="img-hand"
-            src="../assets/img/hand-touch.png"
-            alt="손 이미지"
-          />
+          <img class="img-hand" src="../assets/img/24.png" alt="손 이미지" />
         </h3>
         <h2 class="text-2">
           ‘제이와이대부’에서
@@ -75,6 +71,12 @@ export default {
 }
 .img-hand {
   position: absolute;
+  width: 82%;
+  top: -64px;
+  left: 701px;
+}
+.img-24 {
+  position: absolute;
   width: 100%;
   top: -64px;
   left: 647px;
@@ -85,10 +87,15 @@ export default {
   left: 126px;
 }
 @media (max-width: 1199.98px) {
-  .img-hand {
+  .img-24 {
     width: 84%;
     top: -64px;
     left: 514px;
+  }
+  .img-hand {
+    width: 68%;
+    top: -64px;
+    left: 561px;
   }
   .text-2 {
     top: 169px;
@@ -147,7 +154,6 @@ export default {
     transform: scale(0.8);
   }
 }
-
 @media (max-width: 767.98px) {
 }
 @media (max-width: 575.98px) {
