@@ -1,6 +1,9 @@
 <template>
   <div class="form">
     <div class="form-section">
+      <div v-if="errorFormMessage" class="error-form-message p-1">
+        {{ errorFormMessage }}
+      </div>
       <table class="table">
         <tr>
           <td class="table-label label">+ 이름</td>
@@ -10,7 +13,7 @@
               type="text"
               placeholder=""
               name="user_name"
-              v-model="postData.user_name"
+              v-model="userData.user_name"
             />
           </td>
         </tr>
@@ -22,7 +25,7 @@
               type="text"
               placeholder="숫자만 입력"
               name="user_phone"
-              v-model="postData.user_phone"
+              v-model="userData.user_phone"
             />
           </td>
         </tr>
@@ -32,7 +35,7 @@
             <select
               class="form-select"
               name="loan_type"
-              v-model="postData.loan_type"
+              v-model="userData.loan_type"
             >
               <option value="주택담보대출" selected>주택 담보 대출</option>
             </select>
@@ -54,6 +57,7 @@
                 name="inlineRadioOptions"
                 id="inlineRadio1"
                 value="option1"
+                @change="handleRadioButton(true)"
               />
               <label class="form-check-label" for="inlineRadio1">동의함</label>
             </div>
@@ -64,6 +68,7 @@
                 name="inlineRadioOptions"
                 id="inlineRadio2"
                 value="option2"
+                @change="handleRadioButton(false)"
               />
               <label class="form-check-label" for="inlineRadio2"
                 >동의안함</label
@@ -71,9 +76,12 @@
             </div>
           </div>
         </div>
+        <div v-if="errorAgreeMessage" class="error-form-message p-1">
+          {{ errorAgreeMessage }}
+        </div>
         <div class="row mb-3">
           <div class="col-12">
-            <button class="btn btn-agree" @click="handleAgree">
+            <button class="btn btn-agree" @click="handleOpenModal">
               <i class="fas fa-check"></i> <span class="text-1">|</span>
               동의서 확인하기
             </button>
@@ -98,7 +106,10 @@
     </div>
   </div>
 
+  <!-- 상담신청완료 팝업 Toast -->
   <Toast :showToast="showToast" />
+
+  <!-- Modal창 닫을때 아래 handleCloseModal 함수 호출 -->
   <AgreementForm :showModal="showModal" @close="handleCloseModal" />
 </template>
 
@@ -114,7 +125,7 @@ export default {
   setup() {
     const { error1, post } = postConsult();
     const { sendError, send } = sendTelegram();
-    const postData = ref({
+    const userData = ref({
       user_name: "",
       user_phone: "",
       loan_type: "주택담보대출",
@@ -124,18 +135,49 @@ export default {
     const showModal = ref(false);
     const applied = ref(false);
     const agreeChecked = ref(false);
+    const agreeDocumentConfirm = ref(false);
+    const errorFormMessage = ref("");
+    const errorAgreeMessage = ref("");
 
+    // 빠른상담신청 버튼 클릭
     const handleSubmit = async () => {
-      // postData.value.user_name = "김수달";
-      // postData.value.user_phone = "01012349999";
-      // postData.value.loan_type = "주택담보대출";
-      postData.value.datetime = Date.now();
+      const postData = {
+        user_name: userData.value.user_name,
+        user_phone: userData.value.user_phone,
+        loan_type: userData.value.loan_type,
+        datetime: Date.now(),
+      };
+      userData.value.user_name = "";
+      userData.value.user_phone = "";
+      userData.value.loan_type = "주택담보대출";
 
-      console.log(postData.value);
-      post(postData.value);
+      if (postData.user_name.length < 2) {
+        errorFormMessage.value = "이름을 정상적으로 입력해주세요.";
+        return;
+      }
+      if (postData.user_phone.includes("-")) {
+        errorFormMessage.value = "연락처는 숫자만 입력해주세요.";
+        return;
+      }
+      if (postData.user_phone.length < 11) {
+        errorFormMessage.value = "연락처를 정상적으로 입력해주세요.";
+        return;
+      }
+      errorFormMessage.value = "";
 
-      await send(postData.value.user_name + "님의 상담신청이 접수되었습니다.");
-      console.log("상담신청이 접수되었습니다.");
+      if (!agreeChecked.value) {
+        errorAgreeMessage.value = "개인정보 수집 이용 동의함에 체크해주세요.";
+        return;
+      }
+      errorAgreeMessage.value = "";
+
+      // db에 상담신청인 정보 전송
+      await post(postData);
+
+      // telegram 문자 봇 발송
+      const message = `${postData.user_name}(${postData.user_phone})님의 상담신청이 접수되었습니다.`;
+      await send(message);
+
       showToast.value = true;
       applied.value = true;
 
@@ -145,23 +187,32 @@ export default {
         console.log("정상처리 완료");
       }
     };
-    const handleAgree = () => {
+    const handleOpenModal = () => {
       showModal.value = true;
-      agreeChecked.value = true;
+      // 동의서를 읽은 것으로 체크
+      agreeDocumentConfirm.value = true;
     };
     const handleCloseModal = () => {
       showModal.value = false;
     };
+    const handleRadioButton = (bool) => {
+      // console.log("handleChange");
+      agreeChecked.value = bool;
+      console.log("agreeChecked ", agreeChecked.value);
+    };
 
     return {
       handleSubmit,
-      postData,
+      userData,
       showToast,
       applied,
       showModal,
-      handleAgree,
       agreeChecked,
+      errorFormMessage,
+      errorAgreeMessage,
+      handleOpenModal,
       handleCloseModal,
+      handleRadioButton,
     };
   },
 };
@@ -276,6 +327,10 @@ td {
   font-family: ONEMobile;
   font-size: 15px;
   line-height: 1.6;
+}
+.error-form-message {
+  color: #2c3738;
+  font-size: 1rem;
 }
 @media (max-width: 1199.98px) {
   .bg-basic {

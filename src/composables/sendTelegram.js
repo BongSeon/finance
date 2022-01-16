@@ -16,7 +16,7 @@ const sendTelegram = () => {
       )
       .then((res) => {
         console.log(res.data);
-        console.log("텔레그램 메시지 발송 완료 , massage: ", message);
+        console.log("텔레그램 메시지 발송 완료, 메시지본문: ", message);
         sendError.value = null;
       })
       .catch((err) => {
