@@ -333,12 +333,12 @@ td {
   font-size: 1rem;
 }
 @media (max-width: 1199.98px) {
-  .bg-basic {
+  .content-main {
     height: 314px;
   }
 }
 @media (max-width: 991.98px) {
-  .bg-basic {
+  .content-main {
     height: 314px;
   }
 }

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import Admin from "../views/Admin.vue";
 import Gide from "../views/Gide.vue";
-import Product from "../views/Product.vue";
 import Consult from "../views/Consult.vue";
 import Tous from "../views/Tous.vue";
 
@@ -12,14 +12,14 @@ const routes = [
     component: Home,
   },
   {
+    path: "/admin",
+    name: "Admin",
+    component: Admin,
+  },
+  {
     path: "/gide",
     name: "Gide",
     component: Gide,
-  },
-  {
-    path: "/product",
-    name: "Product",
-    component: Product,
   },
   {
     path: "/consult",

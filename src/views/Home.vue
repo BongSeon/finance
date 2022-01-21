@@ -1,7 +1,7 @@
 <template>
-  <div class="home font-basic">
+  <div class="font-basic">
     <ContentTop />
-    <div class="bg-basic">
+    <div class="content-main">
       <div class="container">
         <h3 class="text-1">
           낮은 금리로 빠르고 쉽고 간편하게~
@@ -14,6 +14,7 @@
         <Contact />
       </div>
     </div>
+    <div class="content-bottom"></div>
   </div>
 </template>
 
@@ -22,7 +23,6 @@ import ContentTop from "@/components/ContentTop.vue";
 import Contact from "@/components/Contact.vue";
 
 export default {
-  name: "Home",
   components: { ContentTop, Contact },
 };
 </script>
@@ -86,7 +86,13 @@ export default {
   top: 154px;
   left: 126px;
 }
+.content-bottom {
+  height: 547px;
+}
 @media (max-width: 1199.98px) {
+  .content-bottom {
+    height: 410px;
+  }
   .img-24 {
     width: 84%;
     top: -64px;

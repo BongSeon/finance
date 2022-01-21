@@ -13,10 +13,7 @@
 export default {};
 </script>
 
-<style scpoped>
-.container {
-  /* height: 100vh; */
-}
+<style scoped>
 .contact {
   text-align: left;
   width: 310px;
@@ -26,8 +23,6 @@ export default {};
   padding: 7px;
   border: 3px solid #176a64;
   border-radius: 50%;
-  /* position: absolute; */
-  /* width: 72px; */
   height: 100%;
   top: 0px;
   left: 0px;
@@ -36,18 +31,14 @@ export default {};
   position: relative;
   width: 82%;
   height: 100%;
-  /* text-align: right; */
 }
 .text-4 {
-  /* position: relative; */
   font-family: NEXONLv2GothicOTF;
   font-size: 186%;
   font-weight: bold;
   letter-spacing: -1.3px;
   text-align: left;
   color: #176a64;
-  /* top: 0px; */
-  /* left: 55px;  */
   margin: 0;
   margin-left: 8px;
   height: 50%;

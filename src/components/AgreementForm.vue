@@ -14,7 +14,9 @@
             @click="handleCloseButton"
             class="btn-close"
             data-bs-dismiss="modal"
-          ></button>
+          >
+            <i class="fas fa-times"></i>
+          </button>
         </div>
         <div class="modal-body p-0">
           <div class="row gx-0">
@@ -32,48 +34,68 @@
           </div>
           <div class="row gx-0">
             <div class="col-md-12 p-4 fs-14px line-h-16">
-              <p class="mb-0">
-                The Marketing team is responsible for conceptualizing and
-                implementing go-to-market activities to achieve increased usage
-                and visibility. The team covers areas including Campaigns
-                Management, Community, Public Relations, Partnerships, Offline
-                Marketing and Design. The Regional Marketing team is responsible
-                for strategizing and implementing go-to-market activities and
-                working with local teams to localize marketing for the specific
-                markets. The Brand and Growth Marketing team covers all aspects
-                of online and performance marketing for the region. This team is
-                responsible for data-driven solutions, tracking and measuring
-                data to reach the targeted customers.
+              <p class="text-3 mb-2">1. 개인정보를 제공받는자</p>
+              <p class="text-2 mb-4 ms-4">
+                영업담당자 및 귀사와 위탁계약을 체결한 대출상담사
               </p>
-              <hr class="my-4" />
-              <div class="h5 mb-3">Job Description:</div>
-              <ul>
-                <li>
-                  Oversee the livestream online operations team in managing
-                  back-end related matters for live shows (e.g. streamer
-                  management, vouchers, banners, etc.)
-                </li>
-                <li>
-                  Supervise back-end admin during official live shows to ensure
-                  smooth flow
-                </li>
-                <li>
-                  Plan and manage the workflow of the team to ensure all
-                  submissions and tasks are done in a timely manner
-                </li>
-                <li>
-                  Provide support to the commercial team in administrative
-                  duties i.e. vendor registration and payment, inventory
-                  tracking, fulfillment of livestream products post-show
-                </li>
-                <li>
-                  Craft and implement improvement plan to improvise day-to-day
-                  operational processes
-                </li>
-              </ul>
+              <p class="text-3 mb-2">
+                2. 개인정보를 제공받는 자의 개인정보 이용 목적
+              </p>
+              <p class="text-2 mb-4 ms-4">
+                귀사가 취급하는 금융상품의 상담 목적
+              </p>
+              <p class="text-3 mb-2">3. 제공하는 개인정보의 항목</p>
+              <p class="text-2 mb-4 ms-4">성명, 전화번호(휴대폰 번호)</p>
+              <p class="text-3 mb-2">4. 개인정보의 보유 및 이용 기간</p>
+              <p class="text-2 mb-4 ms-4">제공 동의일로부터 3개월</p>
+              <p class="text-3 mb-0">
+                5. 개인정보 수집.이용 동의를 거부할 권리가 있으나, 이에 대한
+                동의가 없을 경우 대출상담 신청 등이 불가능할 수 있음을 알려
+                드립니다.
+              </p>
+              <hr class="mt-4 mb-1" />
             </div>
           </div>
         </div>
+        <!-- <div class="modal-header px-4 border-0">
+          <div class="fs-24px fw-bolder">개인정보 수집 · 이용 제공 동의서</div>
+        </div>
+        <div class="modal-body p-0">
+          <div class="row gx-0">
+            <div class="text text-1 mt-3 col-md-12 p-4 fs-14px line-h-16">
+              본 대출상담신청과 관련하여 제이와이대부가 본인의 개인정보를
+              수집.이용하고자 하는 경우에는 『개인정보 보호법』 제15조 및
+              제22조, 『정보통신망 이용촉진 및 정보보호 등에 관한 법률』
+              제22조에 따라 동의를 얻어야 합니다. 이에 본인은 귀사가 아래와 같이
+              본인의 개인정보를 수집.이용하는 것에 동의합니다.
+            </div>
+            <div class="text text-2 mt-1 col-md-12 p-3 fs-14px line-h-16">
+              [개인정보의 필수적인 수집.이용에 관한 사항]
+            </div>
+          </div>
+          <div class="row gx-0">
+            <div class="col-md-12 p-4 fs-14px line-h-16">
+              <p class="text-3 mb-2">1. 개인정보 수집.이용 목적</p>
+              <p class="text-2 mb-4 ms-4">
+                영업담당자 및 귀사와 위탁계약을 체결한 대출상담사
+              </p>
+              <p class="text-3 mb-2">2. 수집하는 개인정보 항목</p>
+              <p class="text-2 mb-4 ms-4">
+                영업담당자 및 귀사와 위탁계약을 체결한 대출상담사
+              </p>
+              <p class="text-3 mb-2">3. 개인정보의 보유 및 이용 기간</p>
+              <p class="text-2 mb-4 ms-4">
+                영업담당자 및 귀사와 위탁계약을 체결한 대출상담사
+              </p>
+              <p class="text-3 mb-2">
+                4. 개인정보 수집.이용 동의를 거부할 권리가 있으나, 이에 대한
+                동의가 없을 경우 대출상담 신청 등이 불가능할 수 있음을 알려
+                드립니다.
+              </p>
+              <hr class="my-4" />
+            </div>
+          </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -107,6 +129,22 @@ export default {
   text-align: left;
   color: #fff;
 }
+.border-0 {
+  border-radius: 0;
+}
+.modal-content {
+  text-align: left;
+}
+.btn-close {
+  width: 0.5rem;
+  height: 0.5rem;
+  color: white;
+  background: none;
+  /* opacity: 0.7; */
+}
+.fa-times {
+  transform: translate(-37%, -38%);
+}
 .row .text {
   font-family: ONEMobile;
   font-size: 16px;
@@ -124,8 +162,39 @@ export default {
 .text-2 {
   color: #939393;
 }
-.modal-body {
+.text-3 {
+  font-family: ONEMobile;
+  font-size: 1.35rem;
+  font-weight: bold;
+  letter-spacing: normal;
+  text-align: left;
+  color: #117671;
 }
-.title-1 {
+.text-4 {
+  color: #939393;
+}
+
+.modal-dialog {
+  margin: 3rem auto;
+}
+@media (max-width: 991.98px) {
+  .text-3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .text-3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .text-3 {
+    font-size: 1.15rem;
+  }
+  .modal-dialog {
+    margin: 0.5rem;
+  }
 }
 </style>

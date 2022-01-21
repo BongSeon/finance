@@ -38,8 +38,8 @@
       <!-- begin navbar-collapse -->
       <div class="collapse navbar-collapse" id="header-navbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><router-link to="/gide">소개</router-link></li>
-          <li><router-link to="/product">상품안내</router-link></li>
+          <li><router-link to="/admin">어드민</router-link></li>
+          <li><router-link to="/gide">대출절차</router-link></li>
           <li><router-link to="/consult">상담문의</router-link></li>
           <li><router-link to="/tous">오시는길</router-link></li>
         </ul>
@@ -66,7 +66,6 @@ export default {
   display: none;
 }
 .header {
-  /* position: sticky !important; */
   padding: 22px 0;
   -webkit-transition: none;
 }
@@ -91,8 +90,6 @@ export default {
   position: relative;
   border: 0;
   background: none;
-  /* background: url("../assets/img/7.png"); */
-  /* background-color: burlywood; */
   border-radius: 0;
   width: 70px;
   height: 34px;
@@ -104,16 +101,13 @@ export default {
   height: 34px;
 }
 .header .navbar-brand .brand-text {
-  /* width: 182px;
-  height: 39px; */
   position: relative;
   padding-top: 10px;
   font-size: 35px;
   font-weight: 800;
   letter-spacing: -1.75px;
-  /* text-align: left; */
   color: #20958b;
-  top: 09px;
+  top: 11px;
   left: -6px;
 }
 .header .navbar-brand .brand-desc {

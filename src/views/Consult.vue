@@ -1,7 +1,7 @@
 <template>
   <div class="home font-basic">
     <ContentTop />
-    <div class="bg-basic">
+    <div class="content-main">
       <div class="container">
         <div class="section-1">
           <div class="img-and-logo">
@@ -20,12 +20,13 @@
         <div class="section-2">
           <ApplyForm />
           <!-- <div class="phone">
-          <img class="img-headphone" src="../assets/img/64.png" alt="" />
-          <p class="text-3">010-9999-9999</p>
-        </div> -->
+            <img class="img-headphone" src="../assets/img/64.png" alt="" />
+            <p class="text-3">010-9999-9999</p>
+          </div> -->
         </div>
       </div>
     </div>
+    <div class="content-bottom"></div>
   </div>
 </template>
 
@@ -40,6 +41,9 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-color: #99d1ce;
+}
 .section-1 {
   height: 316px;
   padding-top: 36px;
@@ -90,13 +94,16 @@ export default {
   color: #00655a;
   margin-left: 8px;
 }
+.content-bottom {
+  height: 465px;
+}
 @media (max-width: 1199.98px) {
-  .bg-basic {
+  .content-main {
     height: 314px;
   }
 }
 @media (max-width: 991.98px) {
-  .bg-basic {
+  .content-main {
     height: 314px;
   }
 }
@@ -106,7 +113,7 @@ export default {
   }
 }
 @media (max-width: 575.98px) {
-  .bg-basic,
+  .content-main,
   .section-1 {
     height: 295px;
   }

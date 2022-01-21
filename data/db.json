@@ -1,9 +1,9 @@
 {
   "consults": [
     {
-      "user_name": "노홍철",
+      "user_name": "비비비",
       "user_phone": "01012349999",
-      "type": "대출문의",
+      "loan_type": "대출문의",
       "datetime": 1641824542252,
       "id": 5
     },
@@ -11,7 +11,7 @@
       "id": 1,
       "user_name": "김수달",
       "user_phone": "01012349999",
-      "type": "대출문의",
+      "loan_type": "대출문의",
       "datetime": 1641889909826
     },
     {
@@ -27,6 +27,41 @@
       "loan_type": "주택담보대출",
       "datetime": 1642322143551,
       "id": 9
+    },
+    {
+      "user_name": "겨울1",
+      "user_phone": "01022224444",
+      "loan_type": "주택담보대출",
+      "datetime": 1642348010985,
+      "id": 10
+    },
+    {
+      "user_name": "겨울2",
+      "user_phone": "01022224444",
+      "loan_type": "주택담보대출",
+      "datetime": 1642348010985,
+      "id": 10
+    },
+    {
+      "user_name": "겨울3",
+      "user_phone": "01022224444",
+      "loan_type": "주택담보대출",
+      "datetime": 1642348010985,
+      "id": 10
+    },
+    {
+      "user_name": "겨울4",
+      "user_phone": "01022224444",
+      "loan_type": "주택담보대출",
+      "datetime": 1642348012985,
+      "id": 10
+    },
+    {
+      "user_name": "봄봄",
+      "user_phone": "01011113333",
+      "loan_type": "주택담보대출",
+      "datetime": 1642431804567,
+      "id": 11
     }
   ],
   "faqs": [

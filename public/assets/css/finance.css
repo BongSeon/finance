@@ -1,7 +1,10 @@
 body {
   background-color: #99d1ce;
 }
-.bg-basic {
+.bg-grey {
+  background-color: #d7d7d7;
+}
+.content-main {
   height: 316px;
   margin: 0;
   background-color: #e7f1f1;
@@ -12,7 +15,9 @@ body {
   line-height: normal;
   letter-spacing: normal;
 }
-
+.brand-text {
+  color: #20958b;
+}
 @font-face {
   font-family: "Paybooc";
   font-weight: 500;
@@ -63,6 +68,13 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "EliceDigitalBaeumOTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 /* @media (min-width: 1200px) {
   .container,
   .container-lg,
@@ -73,12 +85,12 @@ body {
   }
 } */
 @media (max-width: 1199.98px) {
-  .bg-basic {
+  .content-main {
     height: 324px;
   }
 }
 @media (max-width: 991.98px) {
-  .bg-basic {
+  .content-main {
     height: 196px;
   }
 }
@@ -87,7 +99,7 @@ body {
 }
 
 @media (max-width: 575.98px) {
-  .bg-basic {
+  .content-main {
     height: 176px;
   }
 }
