@@ -161,7 +161,9 @@ export default {
             .replace(" days", "일")
             .replace(" day", "일")
             .replace(" hours", "시간")
-            .replace(" minutes", "분");
+            .replace(" hour", "시간")
+            .replace(" minutes", "분")
+            .replace(" minute", "분");
           // let time = con.datatime;
           return { ...con, time: time, timeago: timeago };
         });

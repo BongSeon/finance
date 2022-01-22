@@ -17,16 +17,13 @@
             <span class="text-2">빠른상담신청</span>
           </p>
         </div>
-        <div class="section-2">
-          <ApplyForm />
-          <!-- <div class="phone">
-            <img class="img-headphone" src="../assets/img/64.png" alt="" />
-            <p class="text-3">010-9999-9999</p>
-          </div> -->
-        </div>
       </div>
     </div>
-    <div class="content-bottom"></div>
+    <div class="content-bottom">
+      <div class="section-2">
+        <ApplyForm />
+      </div>
+    </div>
   </div>
 </template>
 

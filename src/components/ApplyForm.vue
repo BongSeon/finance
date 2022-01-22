@@ -37,7 +37,12 @@
               name="loan_type"
               v-model="userData.loan_type"
             >
-              <option value="주택담보대출" selected>주택 담보 대출</option>
+              <option value="주택담보대출">주택 담보 대출</option>
+              <option value="아파트담보대출" selected>아파트 담보대출</option>
+              <option value="공동명의지분대출">공동명의 지분대출</option>
+              <option value="무설정아파트신용대출">
+                무설정 아파트 신용 대출
+              </option>
             </select>
           </td>
         </tr>
@@ -159,7 +164,7 @@ export default {
         errorFormMessage.value = "연락처는 숫자만 입력해주세요.";
         return;
       }
-      if (postData.user_phone.length < 11) {
+      if (postData.user_phone.length < 10) {
         errorFormMessage.value = "연락처를 정상적으로 입력해주세요.";
         return;
       }

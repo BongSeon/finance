@@ -21,26 +21,48 @@
             상담만으로는 신용조회 기록이 절대 남지 않습니다.
           </h2>
         </div>
-        <div class="row ms-3">
-          <div class="flow flow-1 col-3">
+        <div class="row flow-row">
+          <div class="flow flow-1 col-12 col-sm-3">
             인터넷 접수 및<br />
             전화상담
           </div>
-          <div class="arrow-r col-1">=></div>
-          <div class="flow flow-2 col-3">담당자 상담</div>
-          <div class="arrow-r col-1">=></div>
-          <div class="flow flow-3 col-3">대출심사</div>
+          <div class="arrow-lr col-1">
+            <img src="../assets/img/67.png" alt="오른쪽 화살표" />
+          </div>
+          <div class="arrow-d col-12 py-2">
+            <img src="../assets/img/73.png" alt="아래 화살표" />
+          </div>
+          <div class="flow flow-2 col-12 col-sm-3">담당자 상담</div>
+          <div class="arrow-lr col-1">
+            <img src="../assets/img/67.png" alt="오른쪽 화살표" />
+          </div>
+          <div class="arrow-d col-12 py-2">
+            <img src="../assets/img/73.png" alt="아래 화살표" />
+          </div>
+          <div class="flow flow-3 col-12 col-sm-3">대출심사</div>
         </div>
-        <div class="row ms-3">
+        <div class="row flow-row">
           <div class="col-8"></div>
-          <div class="arrow-r col-3">=></div>
+          <div class="arrow-d col-12 col-sm-3 py-2" style="display: block">
+            <img src="../assets/img/73.png" alt="아래 화살표" />
+          </div>
         </div>
-        <div class="row ms-3">
-          <div class="flow flow-4 col-3">대출금 수령</div>
-          <div class="arrow-l col-1">=></div>
-          <div class="flow flow-5 col-3">회사내방<br />또는 출장</div>
-          <div class="arrow-l col-1">=></div>
-          <div class="flow flow-6 col-3">대출승인</div>
+        <div class="row flow-row">
+          <div class="flow flow-4 col-12 col-sm-3">대출금 수령</div>
+          <div class="arrow-lr col-1">
+            <img src="../assets/img/69.png" alt="오른쪽 화살표" />
+          </div>
+          <div class="arrow-d col-12 py-2">
+            <img src="../assets/img/73.png" alt="아래 화살표" />
+          </div>
+          <div class="flow flow-5 col-12 col-sm-3">회사내방<br />또는 출장</div>
+          <div class="arrow-lr col-1">
+            <img src="../assets/img/69.png" alt="오른쪽 화살표" />
+          </div>
+          <div class="arrow-d col-12 py-2">
+            <img src="../assets/img/73.png" alt="아래 화살표" />
+          </div>
+          <div class="flow flow-6 col-12 col-sm-3">대출승인</div>
         </div>
       </div>
     </div>
@@ -57,22 +79,26 @@ export default {
 <style scoped>
 .content-main,
 .flow,
-.arrow-l,
-.arrow-r,
+.arrow-lr,
 .content-bottom .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+.arrow-d {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: middle;
+}
 
 .img-logo {
   position: relative;
-  /* width: 120px; */
   top: 0px;
   left: 25px;
 }
 .content-bottom {
-  height: 547px;
+  height: 530px;
 }
 .content-bottom .container {
   max-width: 960px;
@@ -85,13 +111,11 @@ export default {
   font-stretch: normal;
   font-style: normal;
   line-height: 1.49;
-  /* letter-spacing: 0rem; */
   text-align: center;
   color: #00655a;
 }
 .flow {
   height: 147px;
-  /* margin: 31px 9.9px 16.5px 588px; */
   padding: 0 20px;
   border-radius: 26px;
   box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.16);
@@ -100,10 +124,18 @@ export default {
   font-size: 1.9rem;
   color: white;
 }
-.arrow-l,
-.arrow-r {
+.flow-row {
+  padding-left: 3rem;
+}
+.arrow-lr {
   min-height: 60px;
-  background: #919191;
+}
+.arrow-d {
+  display: none;
+}
+.arrow-d img {
+  margin: 2px auto;
+  height: 90%;
 }
 .flow-1 {
   background: #63b459;
@@ -126,9 +158,50 @@ export default {
 @media (max-width: 1199.98px) {
 }
 @media (max-width: 991.98px) {
+  .img-logo {
+    height: 40px;
+    left: 16px;
+  }
+  .img-gide {
+    height: 150px;
+  }
+  .text-1 {
+    font-size: 1.5rem;
+  }
+  .flow {
+    font-size: 1.65rem;
+  }
+  .arrow-d {
+    height: 50px;
+  }
 }
 @media (max-width: 767.98px) {
+  .img-gide {
+    height: 140px;
+  }
+  .arrow-d {
+    height: 45px;
+  }
+  .flow {
+    font-size: 1.2rem;
+  }
 }
 @media (max-width: 575.98px) {
+  .content-bottom {
+    height: 1235px;
+  }
+  .text-1 {
+    font-size: 1.2rem;
+    padding: 0 2rem;
+  }
+  .flow-row {
+    padding: 0 2rem;
+  }
+  .arrow-lr {
+    display: none;
+  }
+  .arrow-d {
+    display: block;
+  }
 }
 </style>

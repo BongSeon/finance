@@ -1,6 +1,10 @@
 <template>
   <div>
     <h1>오시는길</h1>
+    <!-- <div class="phone">
+            <img class="img-headphone" src="../assets/img/64.png" alt="" />
+            <p class="text-3">010-9999-9999</p>
+          </div> -->
   </div>
 </template>
 
