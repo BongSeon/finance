@@ -188,11 +188,14 @@ export default {
 }
 @media (max-width: 575.98px) {
   .content-bottom {
-    height: 1235px;
+    height: 934px;
   }
   .text-1 {
     font-size: 1.2rem;
     padding: 0 2rem;
+  }
+  .flow {
+    height: 90px;
   }
   .flow-row {
     padding: 0 2rem;

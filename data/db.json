@@ -1,20 +1,6 @@
 {
   "consults": [
     {
-      "user_name": "비비비",
-      "user_phone": "01012349999",
-      "loan_type": "대출문의",
-      "datetime": 1641824542252,
-      "id": 5
-    },
-    {
-      "id": 1,
-      "user_name": "김수달",
-      "user_phone": "01012349999",
-      "loan_type": "대출문의",
-      "datetime": 1641889909826
-    },
-    {
       "user_name": "여름",
       "user_phone": "01012349999",
       "loan_type": "주택담보대출",
@@ -27,27 +13,6 @@
       "loan_type": "주택담보대출",
       "datetime": 1642322143551,
       "id": 9
-    },
-    {
-      "user_name": "겨울1",
-      "user_phone": "01022224444",
-      "loan_type": "주택담보대출",
-      "datetime": 1642348010985,
-      "id": 10
-    },
-    {
-      "user_name": "겨울2",
-      "user_phone": "01022224444",
-      "loan_type": "주택담보대출",
-      "datetime": 1642348010985,
-      "id": 10
-    },
-    {
-      "user_name": "겨울3",
-      "user_phone": "01022224444",
-      "loan_type": "주택담보대출",
-      "datetime": 1642348010985,
-      "id": 10
     },
     {
       "user_name": "겨울4",
@@ -90,6 +55,20 @@
       "loan_type": "공동명의지분대출",
       "datetime": 1642852343924,
       "id": 15
+    },
+    {
+      "user_name": "아서스",
+      "user_phone": "01022223333",
+      "loan_type": "공동명의지분대출",
+      "datetime": 1642861126102,
+      "id": 16
+    },
+    {
+      "user_name": "안두인",
+      "user_phone": "01012341111",
+      "loan_type": "무설정아파트신용대출",
+      "datetime": 1642861534295,
+      "id": 17
     }
   ],
   "faqs": [

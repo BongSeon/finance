@@ -92,7 +92,7 @@ body {
   margin-left: 8px;
 }
 .content-bottom {
-  height: 465px;
+  height: 490px;
 }
 @media (max-width: 1199.98px) {
   .content-main {
