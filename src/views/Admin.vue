@@ -1,8 +1,8 @@
 <template>
   <div class="home font-basic">
     <ContentTop />
-    <div class="content-main">
-      <div v-show="loggedIn" class="container">
+    <div v-if="loggedIn" class="content-main content-bg">
+      <div class="container">
         <!-- BEGIN col-12 -->
         <div class="col-lg-12 ps-lg-5">
           <div class="title-1 pt-4">상담 신청 내역</div>
@@ -124,10 +124,11 @@
         </div>
         <!-- END col-12 -->
       </div>
-      <div v-show="!loggedIn" class="container">
-        <div>로그인 화면</div>
-        <div>
-          <button @click="handleLogin">로그인</button>
+    </div>
+    <div v-else class="content-main login-bg">
+      <div class="login-bg-wrap">
+        <div class="container">
+          <Login @logged="handleLoginEmit" />
         </div>
       </div>
     </div>
@@ -136,13 +137,13 @@
 
 <script>
 import ContentTop from "../components/ContentTop";
+import Login from "../components/Login";
 import getConsults from "../composables/getConsults";
 import { ref, computed } from "vue";
 import { format, formatDistanceToNow } from "date-fns";
 
 export default {
-  name: "Tous",
-  components: { ContentTop },
+  components: { ContentTop, Login },
   setup() {
     const loggedIn = ref(false);
     const currentPage = ref(1);
@@ -182,7 +183,7 @@ export default {
       changePage(page);
     };
 
-    const handleLogin = () => {
+    const handleLoginEmit = () => {
       loggedIn.value = true;
     };
 
@@ -192,7 +193,7 @@ export default {
       changePage,
       addPage,
       loggedIn,
-      handleLogin,
+      handleLoginEmit,
     };
   },
 };
@@ -200,7 +201,15 @@ export default {
 
 <style scoped>
 .content-main {
-  min-height: 90vh;
+  min-height: 93vh;
+}
+.login-bg-wrap {
+  background: rgba(0, 0, 0, 0.6);
+}
+.login-bg {
+  background-image: url("../assets/img/login-bg.jpg");
+}
+.content-bg {
   background: linear-gradient(#d7d7d7 80%, #99d1ce);
 }
 .title-1 {

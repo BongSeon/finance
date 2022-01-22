@@ -1,5 +1,5 @@
 <template>
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div class="toast-wrap position-fixed">
     <div
       class="toast"
       :class="{ show: showToast }"
@@ -37,6 +37,12 @@ export default {
 </script>
 
 <style scoped>
+.toast-wrap {
+  z-index: 10000;
+  padding: 20px;
+  right: 0;
+  bottom: 0;
+}
 .toast {
   width: 380px;
   height: 100px;
@@ -50,5 +56,17 @@ export default {
   font-size: 16px;
   line-height: 22px;
   color: #454545;
+}
+@media (max-width: 575.98px) {
+  .toast-wrap {
+    width: 100%;
+    padding: 0 20px 20px;
+    right: 0;
+  }
+  .toast {
+    width: 100%;
+    /* padding: 20px; */
+    /* right: 0; */
+  }
 }
 </style>

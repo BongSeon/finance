@@ -108,11 +108,20 @@ body {
   .img-and-logo {
     left: 17px;
   }
+  .btn-agree {
+    margin: 0 45px;
+  }
 }
 @media (max-width: 575.98px) {
   .content-main,
   .section-1 {
     height: 295px;
+  }
+  .content-bottom {
+    height: 600px;
+  }
+  .btn-agree {
+    margin: 0 45px;
   }
   .img-avatar {
     width: 192px;
