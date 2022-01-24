@@ -101,7 +101,7 @@ export default {};
   height: 40px;
 }
 .footer-logo .brand-text {
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 800;
   letter-spacing: -0.1rem;
   top: 11px;
@@ -165,6 +165,10 @@ export default {};
 @media (max-width: 991.98px) {
   .footer-top {
     height: 15px;
+  }
+  .footer-contact .text-2 {
+    font-size: 1.5rem;
+    letter-spacing: -0.1rem;
   }
 }
 @media (max-width: 767.98px) {

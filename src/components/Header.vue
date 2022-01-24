@@ -103,24 +103,23 @@ export default {
 .header .navbar-brand .brand-text {
   position: relative;
   padding-top: 10px;
-  font-size: 35px;
+  font-size: 2.2rem;
   font-weight: 800;
-  letter-spacing: -1.75px;
+  letter-spacing: -0.3rem;
   color: #20958b;
-  top: 11px;
-  left: -6px;
+  top: 8px;
+  left: -8px;
 }
 .header .navbar-brand .brand-desc {
   position: absolute;
-  top: -32px;
-  left: 2px;
   border: 0;
   width: 248px;
   height: 21px;
-  font-size: 19px;
-  letter-spacing: -0.76px;
-  /* text-align: left; */
+  font-size: 1.13rem;
+  letter-spacing: -0.1rem;
   color: #064d47;
+  top: -29px;
+  left: 7px;
 }
 .header .nav.navbar-nav > li > a {
   color: #064d47;
@@ -162,7 +161,7 @@ export default {
   .header .navbar-brand .brand-text {
     margin: 0;
     font-size: 1.25rem;
-    letter-spacing: -0.95px;
+    letter-spacing: -0.12rem;
     left: 0;
     top: -1px;
     margin: 4px;
