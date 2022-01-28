@@ -1,15 +1,12 @@
 import { ref } from "vue";
 import axios from "axios";
 
-const postConsult = () => {
-  const error = ref(null);
+const deleteConsult = () => {
+  const error = ref("");
 
-  const post = async (postData) => {
-    const postDataWrap = {
-      param: postData,
-    };
+  const del = async (id) => {
     await axios
-      .post("/api/consult/insert", postDataWrap)
+      .delete("/api/consult/delete/" + id)
       .then((res) => {
         console.log(res.data);
       })
@@ -20,7 +17,7 @@ const postConsult = () => {
       });
   };
 
-  return { error, post };
+  return { error, del };
 };
 
-export default postConsult;
+export default deleteConsult;

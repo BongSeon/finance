@@ -8,11 +8,14 @@
           <div class="title-1 pt-4">상담 신청 내역</div>
           <!-- BEGIN result-header -->
           <div class="d-flex align-items-center fw-bold text-gray-600 mb-4">
-            <!-- <div>Viewing 1 - 25 of 1,320</div> -->
             <div class="ms-auto d-flex align-items-center">
               <span class="me-3">Results per page:</span>
-              <select class="form-select form-select-sm w-80px">
-                <option value="">5</option>
+              <select
+                v-model="resultPerPage"
+                class="form-select form-select-sm w-80px"
+              >
+                <option value="5">5</option>
+                <option value="3">3</option>
               </select>
             </div>
           </div>
@@ -25,7 +28,13 @@
           >
             <div class="time fs-16px ps-2 mb-1 fw-bolder line-h-11 text-start">
               {{ consult.time }}
-              <span class="time-ago">{{ consult.timeago }}</span>
+              <span class="time-ago">{{ consult.timeago }}</span
+              ><button
+                type="button"
+                @click="showDeleteModal(consult.id, consult.name)"
+                class="btn-close"
+                aria-label="Close"
+              ></button>
             </div>
             <!-- BEGIN row -->
             <div class="row">
@@ -43,7 +52,7 @@
                     >
                       NAME:
                     </div>
-                    <div class="fw-bold text-dark">{{ consult.user_name }}</div>
+                    <div class="fw-bold text-dark">{{ consult.name }}</div>
                   </div>
                 </div>
               </div>
@@ -63,7 +72,7 @@
                       PHONE:
                     </div>
                     <div class="fw-bold text-dark">
-                      {{ consult.user_phone }}
+                      {{ consult.phone }}
                     </div>
                   </div>
                 </div>
@@ -90,12 +99,6 @@
               <!-- END col-4 -->
             </div>
             <!-- END row -->
-            <a
-              href="#"
-              data-bs-toggle="modal"
-              data-bs-target="#modalDetail"
-              class="stretched-link"
-            ></a>
           </div>
 
           <!-- <hr class="opacity-30" /> -->
@@ -133,67 +136,129 @@
       </div>
     </div>
   </div>
+
+  <ModalAlert
+    :showModal="showModal"
+    :payload="payload"
+    @close="showModal = false"
+    @action="handleDelete(id)"
+  />
 </template>
 
 <script>
 import ContentTop from "../components/ContentTop";
 import Login from "../components/Login";
+import ModalAlert from "../components/ModalAlert";
 import getConsults from "../composables/getConsults";
+import deleteConsult from "../composables/deleteConsult";
 import { ref, computed } from "vue";
 import { format, formatDistanceToNow } from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
+// import { tr } from "date-fns/locale";
 
 export default {
-  components: { ContentTop, Login },
+  components: { ContentTop, Login, ModalAlert },
   setup() {
-    const loggedIn = ref(false);
-    const currentPage = ref(1);
+    const loggedIn = ref(true);
+    const resultPerPage = ref(5); // 한번에 표시하는 행 수
+    const currentPage = ref(1); // 현재 페이지
+    const showModal = ref(false); // delete confirm
+    const payload = ref({ id: 0, name: "" });
 
-    const { consults, error, load } = getConsults();
-    load(currentPage.value);
+    // 상담 신청 내역 전체 불러오는 함수 -> load
+    const { consults, errorGet, load } = getConsults();
+    // 상담 신청 내역 개별 삭제하는 함수 -> del
+    const { errorDel, del } = deleteConsult();
+
+    // 상담 신청 내역 전체 불러오기 -> consults
+    load();
 
     const formattedConsults = computed(() => {
       if (consults.value) {
-        return consults.value.map((con) => {
-          console.log(con.datetime);
-          let time = format(con.datetime, "yy-MM-dd HH:mm:ss"); // 2021.10.11 10:30:25
-          let timeago = formatDistanceToNow(con.datetime) + " 전";
-          timeago = timeago
-            .replace("about ", "")
-            .replace(" days", "일")
-            .replace(" day", "일")
-            .replace(" hours", "시간")
-            .replace(" hour", "시간")
-            .replace(" minutes", "분")
-            .replace(" minute", "분");
-          // let time = con.datatime;
-          return { ...con, time: time, timeago: timeago };
-        });
+        const current = parseInt(currentPage.value);
+        const resPerPage = parseInt(resultPerPage.value);
+        const start = 0 + (current - 1) * resPerPage;
+        const end = resPerPage + (current - 1) * resPerPage;
+        // console.log(start + "," + end);
+        return consults.value
+          .slice(start, end) // 페이징 처리
+          .map((con) => {
+            // console.log(con.datetime);
+            let timestamp = formatInTimeZone(con.datetime, "Asia/Seoul", "T"); // 2021.10.11 10:30:25
+            timestamp = parseInt(timestamp);
+            let time = format(timestamp, "yyyy-MM-dd HH:mm:ss");
+
+            let timeago = formatDistanceToNow(timestamp) + " 전";
+            timeago = timeago
+              .replace("about ", "")
+              .replace(" days", "일")
+              .replace(" day", "일")
+              .replace(" hours", "시간")
+              .replace(" hour", "시간")
+              .replace("less than a minute", "방금")
+              .replace(" minutes", "분")
+              .replace(" minute", "분");
+            return { ...con, time: time, timeago: timeago };
+          });
       }
     });
 
     const changePage = (page) => {
       currentPage.value = page;
-      load(page);
+      // load(page);
     };
     const addPage = (n) => {
-      page = currentPage.value + n;
+      const page = currentPage.value + n;
       if (page < 1) {
         return;
       }
       changePage(page);
     };
 
+    // 상담 신청 내역의 x 버튼 클릭 시 호출
+    const showDeleteModal = (id, name) => {
+      // console.log("handleDelete:", id, name);
+
+      // 삭제 모달 창 open
+      payload.value.id = id;
+      payload.value.name = name;
+      showModal.value = true;
+    };
+
+    // 삭제 modal의 삭제 버튼 클릭 시 호출
+    const handleDelete = async () => {
+      const id = payload.value.id;
+      const name = payload.value.name;
+      showModal.value = false;
+
+      // 실제 삭제 api 리퀘스트
+      await del(id);
+      console.log(`${name}(${id}) 내역이 정상적으로 삭제 되었습니다.`);
+
+      // 내역 리스트 에서 삭제
+      consults.value = consults.value.filter((consult) => {
+        return consult.id != id;
+      });
+      payload.value.id = 0;
+      payload.value.name = "";
+    };
     const handleLoginEmit = () => {
       loggedIn.value = true;
     };
 
     return {
+      consults,
       formattedConsults,
       currentPage,
       changePage,
       addPage,
       loggedIn,
       handleLoginEmit,
+      resultPerPage,
+      showDeleteModal,
+      handleDelete,
+      payload,
+      showModal,
     };
   },
 };
@@ -201,7 +266,7 @@ export default {
 
 <style scoped>
 .content-main {
-  min-height: 93vh;
+  min-height: 109vh;
 }
 .login-bg-wrap {
   background: rgba(0, 0, 0, 0.6);
@@ -226,6 +291,11 @@ export default {
   font-family: ONEMobile;
   font-size: 0.8rem;
   color: #888;
+}
+.btn-close {
+  padding: 0;
+  position: absolute;
+  right: 8px;
 }
 .pagination .page-item .page-link {
   border-radius: 0;

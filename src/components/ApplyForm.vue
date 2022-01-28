@@ -180,21 +180,21 @@ export default {
     // 빠른상담신청 버튼 클릭
     const handleSubmit = async () => {
       const postData = {
-        user_name: userData.value.user_name,
-        user_phone: userData.value.user_phone,
+        name: userData.value.user_name,
+        phone: userData.value.user_phone,
         loan_type: userData.value.loan_type,
-        datetime: Date.now(),
+        // datetime: Date.now(),
       };
 
-      if (postData.user_name.length < 2) {
+      if (postData.name.length < 2) {
         errorFormMessage.value = "이름을 정상적으로 입력해주세요.";
         return;
       }
-      if (postData.user_phone.includes("-")) {
+      if (postData.phone.includes("-")) {
         errorFormMessage.value = "연락처는 숫자만 입력해주세요.";
         return;
       }
-      if (postData.user_phone.length < 9 || postData.user_phone.length > 11) {
+      if (postData.phone.length < 9 || postData.phone.length > 11) {
         errorFormMessage.value = "연락처를 정상적으로 입력해주세요.";
         return;
       }
@@ -210,8 +210,8 @@ export default {
       await post(postData);
 
       // telegram 문자 봇 발송
-      const message = `${postData.user_name}(${postData.user_phone})님의 상담신청이 접수되었습니다.`;
-      await send(message);
+      const message = `${postData.name}(${postData.phone})님의 상담신청이 접수되었습니다.`;
+      // await send(message);
 
       showToast.value = true;
       applied.value = true;

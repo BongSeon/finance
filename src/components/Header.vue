@@ -105,9 +105,9 @@ export default {
   padding-top: 10px;
   font-size: 2.2rem;
   font-weight: 800;
-  letter-spacing: -0.3rem;
+  letter-spacing: -0.15rem;
   color: #20958b;
-  top: 8px;
+  top: 9px;
   left: -8px;
 }
 .header .navbar-brand .brand-desc {
@@ -116,10 +116,10 @@ export default {
   width: 248px;
   height: 21px;
   font-size: 1.13rem;
-  letter-spacing: -0.1rem;
+  letter-spacing: -0.05rem;
   color: #064d47;
   top: -29px;
-  left: 7px;
+  left: 4px;
 }
 .header .nav.navbar-nav > li > a {
   color: #064d47;
