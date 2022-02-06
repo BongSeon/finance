@@ -151,7 +151,8 @@
 
 <script>
 import { ref } from "@vue/reactivity";
-import postConsult from "../composables/postConsult";
+import { Timestamp } from "firebase/firestore";
+import useCollection from "../composables/useCollection";
 import sendTelegram from "../composables/sendTelegram";
 import Toast from "./Toast.vue";
 import AgreementForm from "./AgreementForm.vue";
@@ -159,8 +160,9 @@ import AgreementForm from "./AgreementForm.vue";
 export default {
   components: { Toast, AgreementForm },
   setup() {
-    const { error1, post } = postConsult();
     const { sendError, send } = sendTelegram();
+    const { error, post } = useCollection("consults"); //
+
     const userData = ref({
       user_name: "",
       user_phone: "",
@@ -183,7 +185,7 @@ export default {
         name: userData.value.user_name,
         phone: userData.value.user_phone,
         loan_type: userData.value.loan_type,
-        // datetime: Date.now(),
+        datetime: Timestamp.now(),
       };
 
       if (postData.name.length < 2) {
@@ -211,7 +213,7 @@ export default {
 
       // telegram 문자 봇 발송
       const message = `${postData.name}(${postData.phone})님의 상담신청이 접수되었습니다.`;
-      // await send(message);
+      await send(message);
 
       showToast.value = true;
       applied.value = true;
@@ -241,10 +243,10 @@ export default {
     const handleAgreeRadio = (radio, bool) => {
       if (radio == 1) {
         agreeChecked1.value = bool;
-        console.log("agreeChecked1 ", agreeChecked1.value);
+        // console.log("agreeChecked1 ", agreeChecked1.value);
       } else if (radio == 2) {
         agreeChecked2.value = bool;
-        console.log("agreeChecked2 ", agreeChecked2.value);
+        // console.log("agreeChecked2 ", agreeChecked2.value);
       }
     };
 

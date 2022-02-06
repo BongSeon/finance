@@ -38,7 +38,6 @@
       <!-- begin navbar-collapse -->
       <div class="collapse navbar-collapse" id="header-navbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><router-link to="/admin">어드민</router-link></li>
           <li><router-link to="/gide">대출절차</router-link></li>
           <li><router-link to="/consult">상담문의</router-link></li>
           <li><router-link to="/tous">오시는길</router-link></li>

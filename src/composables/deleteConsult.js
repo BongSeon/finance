@@ -1,20 +1,13 @@
 import { ref } from "vue";
-import axios from "axios";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 const deleteConsult = () => {
-  const error = ref("");
+  const error = ref(null);
 
-  const del = async (id) => {
-    await axios
-      .delete("/api/consult/delete/" + id)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        error.value = err.message;
-        throw Error("NO post AVAILABLE");
-      });
+  const del = async (collectionName, id) => {
+    console.log("del ->", id);
+    await deleteDoc(doc(db, collectionName, id));
   };
 
   return { error, del };

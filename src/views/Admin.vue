@@ -159,7 +159,7 @@ import { formatInTimeZone } from "date-fns-tz";
 export default {
   components: { ContentTop, Login, ModalAlert },
   setup() {
-    const loggedIn = ref(true);
+    const loggedIn = ref(false);
     const resultPerPage = ref(5); // 한번에 표시하는 행 수
     const currentPage = ref(1); // 현재 페이지
     const showModal = ref(false); // delete confirm
@@ -182,13 +182,10 @@ export default {
         // console.log(start + "," + end);
         return consults.value
           .slice(start, end) // 페이징 처리
-          .map((con) => {
-            // console.log(con.datetime);
-            let timestamp = formatInTimeZone(con.datetime, "Asia/Seoul", "T"); // 2021.10.11 10:30:25
-            timestamp = parseInt(timestamp);
-            let time = format(timestamp, "yyyy-MM-dd HH:mm:ss");
-
-            let timeago = formatDistanceToNow(timestamp) + " 전";
+          .map((doc) => {
+            let time = doc.datetime.toDate();
+            time = format(time, "yyyy-MM-dd HH:mm:ss");
+            let timeago = formatDistanceToNow(doc.datetime.toDate()) + " 전";
             timeago = timeago
               .replace("about ", "")
               .replace(" days", "일")
@@ -198,14 +195,14 @@ export default {
               .replace("less than a minute", "방금")
               .replace(" minutes", "분")
               .replace(" minute", "분");
-            return { ...con, time: time, timeago: timeago };
+
+            return { ...doc, time: time, timeago: timeago };
           });
       }
     });
 
     const changePage = (page) => {
       currentPage.value = page;
-      // load(page);
     };
     const addPage = (n) => {
       const page = currentPage.value + n;
@@ -232,7 +229,7 @@ export default {
       showModal.value = false;
 
       // 실제 삭제 api 리퀘스트
-      await del(id);
+      await del("consults", id);
       console.log(`${name}(${id}) 내역이 정상적으로 삭제 되었습니다.`);
 
       // 내역 리스트 에서 삭제
@@ -266,7 +263,7 @@ export default {
 
 <style scoped>
 .content-main {
-  min-height: 109vh;
+  min-height: 100vh;
 }
 .login-bg-wrap {
   background: rgba(0, 0, 0, 0.6);

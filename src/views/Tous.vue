@@ -81,7 +81,7 @@ export default {
   color: #00655a;
 }
 .address {
-  width: 346px;
+  width: 370px;
   margin: 0 auto;
 }
 .text-3 {
@@ -155,7 +155,7 @@ export default {
     margin-bottom: 0.4rem;
   }
   .address {
-    width: 246px;
+    width: 259px;
     margin: 0 auto;
   }
   .text-3 {

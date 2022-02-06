@@ -16,7 +16,7 @@ export default {};
 <style scoped>
 .contact {
   text-align: left;
-  width: 310px;
+  width: 330px;
   display: flex;
 }
 .img-phone {
@@ -33,7 +33,7 @@ export default {};
   height: 100%;
 }
 .text-4 {
-  font-family: NEXONLv2GothicOTF;
+  font-family: NEXONLv2GothicLight;
   font-size: 186%;
   font-weight: bold;
   letter-spacing: -1.3px;
@@ -51,6 +51,6 @@ export default {};
   color: #176a64;
   top: 28px;
   left: 6px;
-  width: 240px;
+  width: 300px;
 }
 </style>

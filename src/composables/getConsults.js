@@ -1,22 +1,27 @@
 import { ref } from "vue";
-import axios from "axios";
+import { db } from "../firebase/config";
+import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 
 const getConsults = () => {
-  const consults = ref([]);
   const error = ref(null);
+  const consults = ref(null);
 
   const load = async () => {
-    await axios
-      .get("/api/consults")
-      .then((res) => {
-        console.log(res.data);
-        consults.value = res.data;
-      })
-      .catch((error) => {
-        console.log(error);
-        error.value = err.message;
-        throw Error("NO consults AVAILABLE");
+    try {
+      const collectionRef = collection(db, "consults");
+      const q = query(collectionRef, orderBy("datetime", "desc"), limit(300));
+      const results = [];
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.id, " => ", doc.data());
+        results.push({ ...doc.data(), id: doc.id });
       });
+      consults.value = results;
+    } catch (err) {
+      console.error("Error adding document: ", err);
+      error.value = err;
+    }
   };
 
   return { consults, error, load };
