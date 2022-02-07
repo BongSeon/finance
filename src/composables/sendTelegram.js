@@ -5,11 +5,12 @@ const sendTelegram = () => {
   const sendError = ref(null);
 
   const send = async (message) => {
-    // const botId = "bot5049519840:AAEeXGGnbOSKWrgTrYHyiH_N86nB_rkEGP0";
-    const botId = "bot5045004073:AAGaNiuup9tlqG06bBtQi_CT4KmNReupT30";
+    const botId = "bot5049519840:AAEeXGGnbOSKWrgTrYHyiH_N86nB_rkEGP0"; // moonja_bot
+    //const botId = "bot5045004073:AAGaNiuup9tlqG06bBtQi_CT4KmNReupT30";
     const chatData = {
       // chat_id: 1250785916, //1250785916, 1041023086,
-      chat_id: 1041023086, //1250785916, 1041023086,
+      // chat_id: 1041023086, //1250785916, 1041023086,
+      chat_id: -668783962, // 상담신청 알림 단톡방 아이디
       text: message,
     };
     await axios
