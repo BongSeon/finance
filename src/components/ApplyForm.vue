@@ -19,13 +19,36 @@
         </tr>
         <tr>
           <td class="table-label label">+ 연락처</td>
-          <td class="input-field">
+          <td class="input-field input-field-phone">
             <input
-              class="form-control"
+              class="form-control form-control-phone"
               type="text"
-              placeholder="숫자만 입력"
-              name="user_phone"
-              v-model="userData.user_phone"
+              placeholder=""
+              name="user_phone1"
+              v-model="userData.user_phone1"
+              @keyup="handleInputChange(0)"
+            />
+            <span class="fs-4 h" style="max-height: 39px; color: #176a64"
+              >-</span
+            >
+            <input
+              class="form-control form-control-phone"
+              type="text"
+              placeholder=""
+              name="user_phone2"
+              v-model="userData.user_phone2"
+              @keyup="handleInputChange(1)"
+            />
+            <span class="fs-4 h" style="max-height: 39px; color: #176a64"
+              >-</span
+            >
+            <input
+              class="form-control form-control-phone"
+              type="text"
+              placeholder=""
+              name="user_phone3"
+              v-model="userData.user_phone3"
+              @keyup="handleInputChange(2)"
             />
           </td>
         </tr>
@@ -130,10 +153,13 @@
       <!-- <button class="btn btn-submit w-150px ms-5px" @click="handleSubmit"> -->
       <button
         class="btn btn-submit ms-5px"
-        :class="{ disabled: applied }"
+        :class="{ disabled: applied > 0 }"
         @click="handleSubmit"
       >
         빠른상담신청
+        <div v-if="applied == 1" class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </button>
     </div>
   </div>
@@ -150,7 +176,7 @@
 </template>
 
 <script>
-import { ref } from "@vue/reactivity";
+import { ref, computed } from "vue";
 import { Timestamp } from "firebase/firestore";
 import useCollection from "../composables/useCollection";
 import sendTelegram from "../composables/sendTelegram";
@@ -165,14 +191,16 @@ export default {
 
     const userData = ref({
       user_name: "",
-      user_phone: "",
+      user_phone1: "",
+      user_phone2: "",
+      user_phone3: "",
       loan_type: "주택담보대출",
       datetime: null,
     });
     const showToast = ref(false);
     const showModal = ref(false);
     const modalNumber = ref(1);
-    const applied = ref(false);
+    const applied = ref(0); // 상담신청 누르면 1 완료되면 2
     const agreeChecked1 = ref(false);
     const agreeChecked2 = ref(false);
     const agreeDocumentConfirm = ref(false);
@@ -181,9 +209,14 @@ export default {
 
     // 빠른상담신청 버튼 클릭
     const handleSubmit = async () => {
+      applied.value = 1;
+
       const postData = {
         name: userData.value.user_name,
-        phone: userData.value.user_phone,
+        phone:
+          userData.value.user_phone1 +
+          userData.value.user_phone2 +
+          userData.value.user_phone3,
         loan_type: userData.value.loan_type,
         datetime: Timestamp.now(),
       };
@@ -192,11 +225,7 @@ export default {
         errorFormMessage.value = "이름을 정상적으로 입력해주세요.";
         return;
       }
-      if (postData.phone.includes("-")) {
-        errorFormMessage.value = "연락처는 숫자만 입력해주세요.";
-        return;
-      }
-      if (postData.phone.length < 9 || postData.phone.length > 11) {
+      if (postData.phone.length < 9) {
         errorFormMessage.value = "연락처를 정상적으로 입력해주세요.";
         return;
       }
@@ -216,7 +245,7 @@ export default {
       await send(message);
 
       showToast.value = true;
-      applied.value = true;
+      applied.value = 2;
 
       if (sendError.value != null) {
         console.log("에러 발생: " + sendError.value);
@@ -227,7 +256,9 @@ export default {
     };
     const formInit = () => {
       userData.value.user_name = "";
-      userData.value.user_phone = "";
+      userData.value.user_phone1 = "";
+      userData.value.user_phone2 = "";
+      userData.value.user_phone3 = "";
       agreeChecked1.value = false;
       agreeChecked2.value = false;
     };
@@ -243,10 +274,29 @@ export default {
     const handleAgreeRadio = (radio, bool) => {
       if (radio == 1) {
         agreeChecked1.value = bool;
-        // console.log("agreeChecked1 ", agreeChecked1.value);
       } else if (radio == 2) {
         agreeChecked2.value = bool;
-        // console.log("agreeChecked2 ", agreeChecked2.value);
+      }
+    };
+    // 연락처 입력 시 validation (length)
+    const handleInputChange = (num) => {
+      let p1 = userData.value.user_phone1;
+      let p2 = userData.value.user_phone2;
+      let p3 = userData.value.user_phone3;
+      if (num === 0) {
+        if (p1.length > 3) {
+          userData.value.user_phone1 = p1.substr(0, 3);
+        }
+      }
+      if (num === 1) {
+        if (p2.length > 4) {
+          userData.value.user_phone2 = p2.substr(0, 4);
+        }
+      }
+      if (num === 2) {
+        if (p3.length > 4) {
+          userData.value.user_phone3 = p3.substr(0, 4);
+        }
       }
     };
 
@@ -264,6 +314,7 @@ export default {
       handleOpenModal,
       handleCloseModal,
       handleAgreeRadio,
+      handleInputChange,
     };
   },
 };
@@ -302,7 +353,17 @@ td {
   color: #176a64;
 }
 .input-field {
-  width: 75%;
+  width: 100%;
+}
+.input-field-phone {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+.form-control-phone {
+  text-align: center;
+  width: 32%;
+  display: inline;
 }
 .row {
   margin-top: 5px;
@@ -384,6 +445,10 @@ td {
   color: #2c3738;
   font-size: 1rem;
 }
+.spinner-border {
+  position: relative;
+  top: 3px;
+}
 @media (max-width: 1199.98px) {
   .content-main {
     height: 314px;
@@ -394,13 +459,11 @@ td {
     height: 314px;
   }
 }
-
 @media (max-width: 767.98px) {
   .img-and-logo {
     left: 17px;
   }
 }
-
 @media (max-width: 575.98px) {
   .form {
     width: 100%;
