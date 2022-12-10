@@ -223,16 +223,19 @@ export default {
 
       if (postData.name.length < 2) {
         errorFormMessage.value = "이름을 정상적으로 입력해주세요.";
+        applied.value = 0;
         return;
       }
       if (postData.phone.length < 9) {
         errorFormMessage.value = "연락처를 정상적으로 입력해주세요.";
+        applied.value = 0;
         return;
       }
       errorFormMessage.value = "";
 
       if (!agreeChecked1.value || !agreeChecked2.value) {
         errorAgreeMessage.value = "개인정보 수집 이용 동의함에 체크해주세요.";
+        applied.value = 0;
         return;
       }
       errorAgreeMessage.value = "";
@@ -442,7 +445,7 @@ td {
   line-height: 1.6;
 }
 .error-form-message {
-  color: #2c3738;
+  color: #d10000;
   font-size: 1rem;
 }
 .spinner-border {

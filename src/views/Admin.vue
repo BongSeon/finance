@@ -153,8 +153,6 @@ import getConsults from "../composables/getConsults";
 import deleteConsult from "../composables/deleteConsult";
 import { ref, computed } from "vue";
 import { format, formatDistanceToNow } from "date-fns";
-import { formatInTimeZone } from "date-fns-tz";
-// import { tr } from "date-fns/locale";
 
 export default {
   components: { ContentTop, Login, ModalAlert },
@@ -179,7 +177,7 @@ export default {
         const resPerPage = parseInt(resultPerPage.value);
         const start = 0 + (current - 1) * resPerPage;
         const end = resPerPage + (current - 1) * resPerPage;
-        // console.log(start + "," + end);
+
         return consults.value
           .slice(start, end) // 페이징 처리
           .map((doc) => {
